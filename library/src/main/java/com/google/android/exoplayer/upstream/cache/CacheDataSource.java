@@ -34,7 +34,7 @@ import java.io.InterruptedIOException;
  * when possible. When data is not cached it is requested from an upstream {@link DataSource} and
  * written into the cache.
  */
-public final class CacheDataSource implements DataSource {
+public class CacheDataSource implements DataSource {
 
   /**
    * Interface definition for a callback to be notified of {@link CacheDataSource} events.
@@ -187,12 +187,12 @@ public final class CacheDataSource implements DataSource {
     CacheSpan span;
     if (ignoreCache) {
       span = null;
-    } else if (bytesRemaining == C.LENGTH_UNBOUNDED) {
+    } /*else if (bytesRemaining == C.LENGTH_UNBOUNDED) {
       // TODO: Support caching for unbounded requests. This requires storing the source length
       // into the cache (the simplest approach is to incorporate it into each cache file's name).
       Log.w(TAG, "Cache bypassed due to unbounded length.");
       span = null;
-    } else if (blockOnCache) {
+    } */else if (blockOnCache) {
       try {
         span = cache.startReadWrite(key, readPosition);
       } catch (InterruptedException e) {
